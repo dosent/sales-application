@@ -12,9 +12,14 @@ entity Employee {
 	firstName String,
 	lastName String,
     location String,
+    stack Stack,
 	externalId Integer,
     salary Integer
 }
+enum Stack {
+   JAVA, NET, GO, C, ML, DBA
+}
+
 
 relationship OneToMany {
     Employee to Offer{employee},
