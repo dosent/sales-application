@@ -1,0 +1,34 @@
+entity Offer {
+    curetRate Integer,
+    targetRate Integer,
+    curentRatePesent Float,
+    targetRatePesent Float,
+    unbilibliDay1 Integer,
+    urlCV String,
+    activityBeforeDate Instant
+}
+
+entity Employee {
+	firstName String,
+	lastName String,
+    location String,
+	externalId Integer,
+    salary Integer
+}
+
+relationship OneToMany {
+    Employee to Offer{employee},
+}
+
+// Set pagination options
+//paginate Offer with infinite-scroll
+//paginate Employee with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

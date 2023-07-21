@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "offer",
+  "fields": [
+    {
+      "fieldName": "curetRate",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "targetRate",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "curentRatePesent",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "targetRatePesent",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "unbilibliDay1",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "urlCV",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "activityBeforeDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Offer",
+  "relationships": [
+    {
+      "otherEntityName": "employee",
+      "relationshipName": "employee",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
