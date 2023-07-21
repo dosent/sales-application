@@ -1,5 +1,6 @@
 {
   "applications": "*",
+  "changelogDate": "20230721074717",
   "dto": "mapstruct",
   "entityTableName": "offer",
   "fields": [
@@ -41,5 +42,6 @@
       "relationshipType": "many-to-one"
     }
   ],
+  "searchEngine": "no",
   "service": "serviceClass"
 }

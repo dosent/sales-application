@@ -1,5 +1,6 @@
 {
   "applications": "*",
+  "changelogDate": "20230721074718",
   "dto": "mapstruct",
   "entityTableName": "employee",
   "fields": [
@@ -14,6 +15,11 @@
     {
       "fieldName": "location",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "stack",
+      "fieldType": "Stack",
+      "fieldValues": "JAVA,NET,GO,C,ML,DBA"
     },
     {
       "fieldName": "externalId",
@@ -34,5 +40,6 @@
       "relationshipType": "one-to-many"
     }
   ],
+  "searchEngine": "no",
   "service": "serviceClass"
 }
