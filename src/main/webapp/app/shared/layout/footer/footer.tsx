@@ -8,7 +8,13 @@ const Footer = () => (
   <div className="footer page-content">
     <Row>
       <Col md="12">
-        <p>This is your footer</p>
+        <p>
+          Исходники{' '}
+          <a href="https://github.com/dosent/sales-application" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          !
+        </p>
       </Col>
     </Row>
   </div>

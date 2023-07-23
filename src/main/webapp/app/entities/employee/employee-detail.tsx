@@ -33,25 +33,25 @@ export const EmployeeDetail = () => {
           <dd>{employeeEntity.id}</dd>
           <dt>
             <span id="firstName">
-              <Translate contentKey="salesApp.employee.firstName">First Name</Translate>
+              <Translate contentKey="salesApp.employee.firstName">Имя</Translate>
             </span>
           </dt>
           <dd>{employeeEntity.firstName}</dd>
           <dt>
             <span id="lastName">
-              <Translate contentKey="salesApp.employee.lastName">Last Name</Translate>
+              <Translate contentKey="salesApp.employee.lastName">Фамилия</Translate>
             </span>
           </dt>
           <dd>{employeeEntity.lastName}</dd>
           <dt>
             <span id="location">
-              <Translate contentKey="salesApp.employee.location">Location</Translate>
+              <Translate contentKey="salesApp.employee.location">Филиал</Translate>
             </span>
           </dt>
           <dd>{employeeEntity.location}</dd>
           <dt>
             <span id="stack">
-              <Translate contentKey="salesApp.employee.stack">Stack</Translate>
+              <Translate contentKey="salesApp.employee.stack">Стэк</Translate>
             </span>
           </dt>
           <dd>{employeeEntity.stack}</dd>
@@ -63,7 +63,7 @@ export const EmployeeDetail = () => {
           <dd>{employeeEntity.externalId}</dd>
           <dt>
             <span id="salary">
-              <Translate contentKey="salesApp.employee.salary">Salary</Translate>
+              <Translate contentKey="salesApp.employee.salary">Заработная плата</Translate>
             </span>
           </dt>
           <dd>{employeeEntity.salary}</dd>

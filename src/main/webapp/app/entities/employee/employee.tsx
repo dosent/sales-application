@@ -88,19 +88,19 @@ export const Employee = () => {
                   <Translate contentKey="salesApp.employee.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th className="hand" onClick={sort('firstName')}>
-                  <Translate contentKey="salesApp.employee.firstName">First Name</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.firstName">Имя</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('firstName')} />
                 </th>
                 <th className="hand" onClick={sort('lastName')}>
-                  <Translate contentKey="salesApp.employee.lastName">Last Name</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.lastName">Фамиля</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('lastName')} />
                 </th>
                 <th className="hand" onClick={sort('location')}>
-                  <Translate contentKey="salesApp.employee.location">Location</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.location">Филиал</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('location')} />
                 </th>
                 <th className="hand" onClick={sort('stack')}>
-                  <Translate contentKey="salesApp.employee.stack">Stack</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.stack">Стэк</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('stack')} />
                 </th>
                 <th className="hand" onClick={sort('externalId')}>
@@ -108,7 +108,7 @@ export const Employee = () => {
                   <FontAwesomeIcon icon={getSortIconByFieldName('externalId')} />
                 </th>
                 <th className="hand" onClick={sort('salary')}>
-                  <Translate contentKey="salesApp.employee.salary">Salary</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.salary">Заработная плата</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('salary')} />
                 </th>
                 <th />
