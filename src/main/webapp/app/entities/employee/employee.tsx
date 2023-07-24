@@ -70,12 +70,12 @@ export const Employee = () => {
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="salesApp.employee.home.refreshListLabel">Refresh List</Translate>
+            <Translate contentKey="salesApp.employee.home.refreshListLabel">Обновить список</Translate>
           </Button>
           <Link to="/employee/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="salesApp.employee.home.createLabel">Create new Employee</Translate>
+            <Translate contentKey="salesApp.employee.home.createLabel">Создать нового сотрудника</Translate>
           </Link>
         </div>
       </h2>
@@ -85,30 +85,36 @@ export const Employee = () => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="salesApp.employee.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+                  #<Translate contentKey="salesApp.employee.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th className="hand" onClick={sort('firstName')}>
-                  <Translate contentKey="salesApp.employee.firstName">Имя</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.firstName">Имя</Translate>
+                  {'Имя '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('firstName')} />
                 </th>
                 <th className="hand" onClick={sort('lastName')}>
-                  <Translate contentKey="salesApp.employee.lastName">Фамиля</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.lastName">Фамиля</Translate>
+                  {'Фамилия '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('lastName')} />
                 </th>
                 <th className="hand" onClick={sort('location')}>
-                  <Translate contentKey="salesApp.employee.location">Филиал</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.location">Филиал</Translate>
+                  {'Филиал '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('location')} />
                 </th>
                 <th className="hand" onClick={sort('stack')}>
-                  <Translate contentKey="salesApp.employee.stack">Стэк</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.stack">Стэк</Translate>
+                  {'Стэк '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('stack')} />
                 </th>
                 <th className="hand" onClick={sort('externalId')}>
-                  <Translate contentKey="salesApp.employee.externalId">External Id</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.externalId">External Id</Translate>
+                  {'Ссылка на jira '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('externalId')} />
                 </th>
                 <th className="hand" onClick={sort('salary')}>
-                  <Translate contentKey="salesApp.employee.salary">Заработная плата</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.salary">Заработная плата</Translate>
+                  {'Заработная плата '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('salary')} />
                 </th>
                 <th />

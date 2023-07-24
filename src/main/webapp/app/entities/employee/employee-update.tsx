@@ -90,18 +90,18 @@ export const EmployeeUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null}
-              <ValidatedField label="First Name" id="employee-firstName" name="firstName" data-cy="firstName" type="text" />
-              <ValidatedField label="Last Name" id="employee-lastName" name="lastName" data-cy="lastName" type="text" />
-              <ValidatedField label="Location" id="employee-location" name="location" data-cy="location" type="text" />
-              <ValidatedField label="Stack" id="employee-stack" name="stack" data-cy="stack" type="select">
+              <ValidatedField label="Имя" id="employee-firstName" name="firstName" data-cy="firstName" type="text" />
+              <ValidatedField label="Фамилия" id="employee-lastName" name="lastName" data-cy="lastName" type="text" />
+              <ValidatedField label="Филиал" id="employee-location" name="location" data-cy="location" type="text" />
+              <ValidatedField label="Стэк" id="employee-stack" name="stack" data-cy="stack" type="select">
                 {stackValues.map(stack => (
                   <option value={stack} key={stack}>
                     {stack}
                   </option>
                 ))}
               </ValidatedField>
-              <ValidatedField label="External Id" id="employee-externalId" name="externalId" data-cy="externalId" type="text" />
-              <ValidatedField label="Salary" id="employee-salary" name="salary" data-cy="salary" type="text" />
+              <ValidatedField label="Id в jira" id="employee-externalId" name="externalId" data-cy="externalId" type="text" />
+              <ValidatedField label="Зарплата" id="employee-salary" name="salary" data-cy="salary" type="text" />
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/employee" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

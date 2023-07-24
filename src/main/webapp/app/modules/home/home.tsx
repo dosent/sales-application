@@ -1,45 +1,67 @@
 import './home.scss';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { Row, Col, Alert } from 'reactstrap';
+import { Row, Col, Alert, Table, Button } from 'reactstrap';
 
-import { useAppSelector } from 'app/config/store';
+import { useAppDispatch, useAppSelector } from 'app/config/store';
+import { getForSales } from 'app/entities/forsale/forsale.reducer';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const forSaleList = useAppSelector(state => state.forsale.entities);
+  const loading = useAppSelector(state => state.forsale.entities);
+
+  const getAllForSales = () => {
+    dispatch(getForSales({}));
+
+    useEffect(() => {
+      getAllForSales();
+    }, []);
+  };
   return (
     <Row>
-      <Col md="9">
+      <Col md="12">
         <h2>Предложение от BackEnd'a</h2>
-        <p className="lead"></p>
-        {account?.login ? (
-          <div>
-            <Alert color="success">You are logged in as user &quot;{account.login}&quot;.</Alert>
-          </div>
-        ) : (
-          <div>
-            <Alert color="warning">
-              If you want to
-              <span>&nbsp;</span>
-              <Link to="/login" className="alert-link">
-                sign in
-              </Link>
-              , you can try the default accounts:
-              <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;) <br />- User (login=&quot;user&quot; and
-              password=&quot;user&quot;).
-            </Alert>
-
-            <Alert color="warning">
-              You don&apos;t have an account yet?&nbsp;
-              <Link to="/account/register" className="alert-link">
-                Register a new account
-              </Link>
-            </Alert>
-          </div>
-        )}
+        <div>Обновить список {account.login}</div>
+        <div className="table-responsive">
+          {forSaleList && forSaleList.length > 0
+            ? 'sdsds'
+            : !loading && <div className="alert alert-warning">Нет предложений на данный момент</div>}
+        </div>
+        <div>
+          <Table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Специалист</th>
+                <th>Стек</th>
+                <th>Ставка на первых 3 месяца</th>
+                <th>Целевая ставка</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>
+                  <a className="icon-link" href="#">
+                    <i className="fa-solid fa-question-circle"></i>
+                    Mark
+                  </a>
+                </td>
+                <td>----------------------------------</td>
+                <td>@---------------------------------------</td>
+                <td>------------------</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
         <p>У вас есть вопросы?</p>
       </Col>
     </Row>
