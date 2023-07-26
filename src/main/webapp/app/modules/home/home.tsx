@@ -20,23 +20,20 @@ export const Home = () => {
 
   const getAllForSales = () => {
     dispatch(getForSales({}));
-
-    useEffect(() => {
-      getAllForSales();
-    }, []);
   };
+  useEffect(() => getAllForSales(), []);
+
   return (
     <Row>
       <Col md="12">
         <h2>Предложение от BackEnd'a</h2>
         <div>Обновить список {account.login}</div>
+
         <div className="table-responsive">
-          {forSaleList && forSaleList.length > 0
-            ? 'sdsds'
-            : !loading && <div className="alert alert-warning">Нет предложений на данный момент</div>}
+          {forSaleList && forSaleList.length > 0 ? '' : <div className="alert alert-warning">Нет предложений на данный момент</div>}
         </div>
         <div>
-          <Table>
+          <Table hidden={!(forSaleList && forSaleList.length > 0)}>
             <thead>
               <tr>
                 <th>#</th>
@@ -47,18 +44,20 @@ export const Home = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>
-                  <a className="icon-link" href="#">
-                    <i className="fa-solid fa-question-circle"></i>
-                    Mark
-                  </a>
-                </td>
-                <td>----------------------------------</td>
-                <td>@---------------------------------------</td>
-                <td>------------------</td>
-              </tr>
+              {forSaleList.map((forSale, i) => (
+                <tr>
+                  <th scope="row">{i + 1}</th>
+                  <td>
+                    <a className="icon-link" href={forSale.urlCV}>
+                      <i className="fa-solid fa-question-circle"></i>
+                      {forSale.firstName}
+                    </a>
+                  </td>
+                  <td> {forSale.stack}</td>
+                  <td>{forSale.targetRate3Mounts}</td>
+                  <td>{forSale.targetRate}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </div>
