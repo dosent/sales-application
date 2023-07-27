@@ -7,6 +7,8 @@ import { Row, Col, Alert, Table, Button } from 'reactstrap';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getForSales } from 'app/entities/forsale/forsale.reducer';
+import { TextFormat } from 'react-jhipster';
+import { APP_DATE_FORMAT } from 'app/config/constants';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
@@ -41,6 +43,7 @@ export const Home = () => {
                 <th>Стек</th>
                 <th>Ставка на первых 3 месяца</th>
                 <th>Целевая ставка</th>
+                <th>Предложение действует до</th>
               </tr>
             </thead>
             <tbody>
@@ -53,9 +56,18 @@ export const Home = () => {
                       {forSale.firstName}
                     </a>
                   </td>
-                  <td> {forSale.stack}</td>
+                  <td>
+                    <a className="icon-link" href={forSale.urlJira}>
+                      {forSale.stack}
+                    </a>
+                  </td>
                   <td>{forSale.targetRate3Mounts}</td>
                   <td>{forSale.targetRate}</td>
+                  <td>
+                    {forSale.activityBeforeDate ? (
+                      <TextFormat type="date" value={forSale.activityBeforeDate} format={APP_DATE_FORMAT} />
+                    ) : null}
+                  </td>
                 </tr>
               ))}
             </tbody>

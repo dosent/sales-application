@@ -132,7 +132,11 @@ export const Employee = () => {
                   <td>{employee.lastName}</td>
                   <td>{employee.location}</td>
                   <td>{employee.stack}</td>
-                  <td>{employee.externalId}</td>
+                  <td>
+                    <a target="_blank" href={'https://jira.simbirsoft.com/browse/BACK-' + employee.externalId}>
+                      BACK-{employee.externalId}
+                    </a>
+                  </td>
                   <td>{employee.salary}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

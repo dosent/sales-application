@@ -2,6 +2,7 @@ package com.simbirsoft.sales.service.dto;
 
 import com.simbirsoft.sales.domain.enumeration.Stack;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 @SuppressWarnings("common-java:DuplicatedBlocks")
@@ -13,6 +14,26 @@ public class ForSalesDTO implements Serializable {
     private Integer targetRate;
     private Integer targetRate3Mounts;
     private String urlCV;
+
+    public Instant getActivityBeforeDate() {
+        return activityBeforeDate;
+    }
+
+    public void setActivityBeforeDate(Instant activityBeforeDate) {
+        this.activityBeforeDate = activityBeforeDate;
+    }
+
+    private Instant activityBeforeDate;
+
+    public String getUrlJira() {
+        return urlJira;
+    }
+
+    public void setUrlJira(String urlJira) {
+        this.urlJira = urlJira;
+    }
+
+    private String urlJira;
 
     public String getFirstName() {
         return firstName;
@@ -73,13 +94,14 @@ public class ForSalesDTO implements Serializable {
             stack == that.stack &&
             Objects.equals(targetRate, that.targetRate) &&
             Objects.equals(targetRate3Mounts, that.targetRate3Mounts) &&
+            Objects.equals(urlJira, that.urlJira) &&
             Objects.equals(urlCV, that.urlCV)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, stack, targetRate, targetRate3Mounts, urlCV);
+        return Objects.hash(firstName, lastName, stack, targetRate, targetRate3Mounts, urlCV, urlJira);
     }
 
     @Override
@@ -100,6 +122,8 @@ public class ForSalesDTO implements Serializable {
             targetRate3Mounts +
             ", urlCV='" +
             urlCV +
+            ", urlJira='" +
+            urlJira +
             '\'' +
             '}'
         );

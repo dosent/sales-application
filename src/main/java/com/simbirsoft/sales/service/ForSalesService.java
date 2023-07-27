@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ForSalesService {
 
+    public static final String URL_JIRA_SIMBIRSOFT_COM_BROWSE_BACK = "https://jira.simbirsoft.com/browse/BACK-";
     private final Logger log = LoggerFactory.getLogger(ForSalesService.class);
 
     private final OfferRepository offerRepository;
@@ -35,9 +36,11 @@ public class ForSalesService {
                 forSalesDTO.setFirstName(offer.getEmployee().getFirstName());
                 forSalesDTO.setLastName(offer.getEmployee().getLastName());
                 forSalesDTO.setStack(offer.getEmployee().getStack());
-                forSalesDTO.setUrlCV(offer.getUrlCV());
-                forSalesDTO.setTargetRate(20);
-                forSalesDTO.setTargetRate3Mounts(3);
+                forSalesDTO.setUrlCV(offer.getUrlCV().toString());
+                forSalesDTO.setTargetRate(offer.getTargetRate());
+                forSalesDTO.setTargetRate3Mounts(offer.getCuretRate());
+                forSalesDTO.setUrlJira(URL_JIRA_SIMBIRSOFT_COM_BROWSE_BACK.concat(offer.getEmployee().getExternalId().toString()));
+                forSalesDTO.setActivityBeforeDate(offer.getActivityBeforeDate());
                 result.add(forSalesDTO);
             }
         }
