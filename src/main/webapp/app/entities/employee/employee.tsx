@@ -70,12 +70,12 @@ export const Employee = () => {
         <div className="d-flex justify-content-end">
           <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
-            <Translate contentKey="salesApp.employee.home.refreshListLabel">Refresh List</Translate>
+            <Translate contentKey="salesApp.employee.home.refreshListLabel">Обновить список</Translate>
           </Button>
           <Link to="/employee/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
-            <Translate contentKey="salesApp.employee.home.createLabel">Create new Employee</Translate>
+            <Translate contentKey="salesApp.employee.home.createLabel">Создать нового сотрудника</Translate>
           </Link>
         </div>
       </h2>
@@ -85,30 +85,36 @@ export const Employee = () => {
             <thead>
               <tr>
                 <th className="hand" onClick={sort('id')}>
-                  <Translate contentKey="salesApp.employee.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
+                  #<Translate contentKey="salesApp.employee.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th className="hand" onClick={sort('firstName')}>
-                  <Translate contentKey="salesApp.employee.firstName">First Name</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.firstName">Имя</Translate>
+                  {'Имя '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('firstName')} />
                 </th>
                 <th className="hand" onClick={sort('lastName')}>
-                  <Translate contentKey="salesApp.employee.lastName">Last Name</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.lastName">Фамиля</Translate>
+                  {'Фамилия '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('lastName')} />
                 </th>
                 <th className="hand" onClick={sort('location')}>
-                  <Translate contentKey="salesApp.employee.location">Location</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.location">Филиал</Translate>
+                  {'Филиал '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('location')} />
                 </th>
                 <th className="hand" onClick={sort('stack')}>
-                  <Translate contentKey="salesApp.employee.stack">Stack</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.stack">Стэк</Translate>
+                  {'Стэк '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('stack')} />
                 </th>
                 <th className="hand" onClick={sort('externalId')}>
-                  <Translate contentKey="salesApp.employee.externalId">External Id</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.externalId">External Id</Translate>
+                  {'Ссылка на jira '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('externalId')} />
                 </th>
                 <th className="hand" onClick={sort('salary')}>
-                  <Translate contentKey="salesApp.employee.salary">Salary</Translate>{' '}
+                  <Translate contentKey="salesApp.employee.salary">Заработная плата</Translate>
+                  {'Заработная плата '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('salary')} />
                 </th>
                 <th />
@@ -126,7 +132,11 @@ export const Employee = () => {
                   <td>{employee.lastName}</td>
                   <td>{employee.location}</td>
                   <td>{employee.stack}</td>
-                  <td>{employee.externalId}</td>
+                  <td>
+                    <a target="_blank" href={'https://jira.simbirsoft.com/browse/BACK-' + employee.externalId}>
+                      BACK-{employee.externalId}
+                    </a>
+                  </td>
                   <td>{employee.salary}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

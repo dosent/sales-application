@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FocusEvent } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, Row, Col, FormText } from 'reactstrap';
 import { isNumber, Translate, translate, ValidatedField, ValidatedForm } from 'react-jhipster';
@@ -12,6 +12,16 @@ import { IEmployee } from 'app/shared/model/employee.model';
 import { getEntities as getEmployees } from 'app/entities/employee/employee.reducer';
 import { IOffer } from 'app/shared/model/offer.model';
 import { getEntity, updateEntity, createEntity, reset } from './offer.reducer';
+import { TRUE } from 'sass';
+import { random, round } from 'lodash';
+
+function getRatePesent(targetRate, salary) {
+  return round((0.80834 - (salary * 0.00743448 + 206.8965552) / targetRate) * 100);
+}
+
+function getEmployee(employees, param) {
+  return employees.find(it => it.id.toString() === param.id.toString());
+}
 
 export const OfferUpdate = () => {
   const dispatch = useAppDispatch();
@@ -55,7 +65,8 @@ export const OfferUpdate = () => {
       ...values,
       employee: employees.find(it => it.id.toString() === values.employee.toString()),
     };
-
+    entity.curentRatePesent = getRatePesent(entity.curetRate, entity.employee.salary);
+    entity.targetRatePesent = getRatePesent(entity.targetRate, entity.employee.salary);
     if (isNew) {
       dispatch(createEntity(entity));
     } else {
@@ -99,38 +110,53 @@ export const OfferUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null}
-              <ValidatedField label="Curet Rate" id="offer-curetRate" name="curetRate" data-cy="curetRate" type="text" />
-              <ValidatedField label="Target Rate" id="offer-targetRate" name="targetRate" data-cy="targetRate" type="text" />
               <ValidatedField
-                label="Curent Rate Pesent"
-                id="offer-curentRatePesent"
-                name="curentRatePesent"
-                data-cy="curentRatePesent"
+                label="Cтавка на 3 месяца"
+                id="offer-curetRate"
+                name="curetRate"
+                data-cy="curetRate"
+                type="text"
+                onBlur={(event: React.FocusEvent<HTMLInputElement>) => {
+                  //this.state.offer.curentRatePesent = getRatePesent(event.target.value,200000);
+                  //offerEntity.curentRatePesent = getRatePesent(event.target.value,200000);
+                  //console.log(getRatePesent(event.target.value,200000));
+                }}
+              />
+              <p>
+                <i>Доходность от ставки на 3 месяца: {offerEntity.curentRatePesent}%</i>
+              </p>
+              <ValidatedField
+                label="Целевая ставка (минимальная ставка)"
+                id="offer-targetRate"
+                name="targetRate"
+                data-cy="targetRate"
                 type="text"
               />
-              <ValidatedField
-                label="Target Rate Pesent"
-                id="offer-targetRatePesent"
-                name="targetRatePesent"
-                data-cy="targetRatePesent"
+              <p>
+                <i>Доходность от целевой ставки: {offerEntity.targetRatePesent}%</i>
+              </p>
+              {/*              <ValidatedField
+                label="Сколько дней не билиться"
+                id="offer-unbilibliDay1"
+                name="unbilibliDay1"
+                data-cy="unbilibliDay1"
                 type="text"
-              />
-              <ValidatedField label="Unbilibli Day 1" id="offer-unbilibliDay1" name="unbilibliDay1" data-cy="unbilibliDay1" type="text" />
-              <ValidatedField label="Url CV" id="offer-urlCV" name="urlCV" data-cy="urlCV" type="text" />
+              />*/}
+              <ValidatedField label="Ссылка на CV" id="offer-urlCV" name="urlCV" data-cy="urlCV" type="text" />
               <ValidatedField
-                label="Activity Before Date"
+                label="Предложение действует до "
                 id="offer-activityBeforeDate"
                 name="activityBeforeDate"
                 data-cy="activityBeforeDate"
                 type="datetime-local"
                 placeholder="YYYY-MM-DD HH:mm"
               />
-              <ValidatedField id="offer-employee" name="employee" data-cy="employee" label="Employee" type="select">
+              <ValidatedField id="offer-employee" name="employee" data-cy="employee" label="Сотрудник" type="select">
                 <option value="" key="0" />
                 {employees
                   ? employees.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.id + '  ' + otherEntity.firstName + '  ' + otherEntity.lastName}
                       </option>
                     ))
                   : null}

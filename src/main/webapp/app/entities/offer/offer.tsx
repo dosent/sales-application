@@ -89,33 +89,38 @@ export const Offer = () => {
                   <Translate contentKey="salesApp.offer.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th className="hand" onClick={sort('curetRate')}>
-                  <Translate contentKey="salesApp.offer.curetRate">Curet Rate</Translate>{' '}
+                  <Translate contentKey="salesApp.offer.curetRate">Curet Rate</Translate>
+                  {'Ставка на 3 месяца '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('curetRate')} />
                 </th>
                 <th className="hand" onClick={sort('targetRate')}>
-                  <Translate contentKey="salesApp.offer.targetRate">Target Rate</Translate>{' '}
+                  <Translate contentKey="salesApp.offer.targetRate">Target Rate</Translate>
+                  {'Целевая ставка (минимальная ставка) '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('targetRate')} />
                 </th>
-                <th className="hand" onClick={sort('curentRatePesent')}>
-                  <Translate contentKey="salesApp.offer.curentRatePesent">Curent Rate Pesent</Translate>{' '}
+                {/*                <th className="hand" onClick={sort('curentRatePesent')}>
+                  <Translate contentKey="salesApp.offer.curentRatePesent">Curent Rate Pesent</Translate>{'Доходность от текущей ставки в % '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('curentRatePesent')} />
-                </th>
+                </th>*/}
                 <th className="hand" onClick={sort('targetRatePesent')}>
-                  <Translate contentKey="salesApp.offer.targetRatePesent">Target Rate Pesent</Translate>{' '}
+                  <Translate contentKey="salesApp.offer.targetRatePesent">Target Rate Pesent</Translate>
+                  {'Доходность от целевой ставки в % '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('targetRatePesent')} />
                 </th>
-                <th className="hand" onClick={sort('unbilibliDay1')}>
-                  <Translate contentKey="salesApp.offer.unbilibliDay1">Unbilibli Day 1</Translate>{' '}
+                {/*                <th className="hand" onClick={sort('unbilibliDay1')}>
+                  <Translate contentKey="salesApp.offer.unbilibliDay1">Unbilibli Day 1</Translate>{'Сколько дней не билиться'}
                   <FontAwesomeIcon icon={getSortIconByFieldName('unbilibliDay1')} />
-                </th>
+                </th>*/}
                 <th className="hand" onClick={sort('urlCV')}>
+                  Ссылка на CV
                   <Translate contentKey="salesApp.offer.urlCV">Url CV</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('urlCV')} />
                 </th>
-                <th className="hand" onClick={sort('activityBeforeDate')}>
+                {/*                <th className="hand" onClick={sort('activityBeforeDate')}>
                   <Translate contentKey="salesApp.offer.activityBeforeDate">Activity Before Date</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('activityBeforeDate')} />
-                </th>
+                </th>*/}
                 <th>
+                  Предложение действительно до
                   <Translate contentKey="salesApp.offer.employee">Employee</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
@@ -131,14 +136,18 @@ export const Offer = () => {
                   </td>
                   <td>{offer.curetRate}</td>
                   <td>{offer.targetRate}</td>
-                  <td>{offer.curentRatePesent}</td>
+                  {/*                  <td>{offer.curentRatePesent}</td>*/}
                   <td>{offer.targetRatePesent}</td>
-                  <td>{offer.unbilibliDay1}</td>
-                  <td>{offer.urlCV}</td>
+                  {/*                  <td>{offer.unbilibliDay1}</td>*/}
+                  <td>
+                    <a target="_blank" href={offer.urlCV}>
+                      ссылка
+                    </a>
+                  </td>
                   <td>
                     {offer.activityBeforeDate ? <TextFormat type="date" value={offer.activityBeforeDate} format={APP_DATE_FORMAT} /> : null}
                   </td>
-                  <td>{offer.employee ? <Link to={`/employee/${offer.employee.id}`}>{offer.employee.id}</Link> : ''}</td>
+                  {/*<td>{offer.employee ? <Link to={`/employee/${offer.employee.id}`}>{offer.employee.id}</Link> : ''}</td>*/}
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/offer/${offer.id}`} color="info" size="sm" data-cy="entityDetailsButton">

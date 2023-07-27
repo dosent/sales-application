@@ -1,85 +1,79 @@
 import './home.scss';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-import { Row, Col, Alert } from 'reactstrap';
+import { Row, Col, Alert, Table, Button } from 'reactstrap';
 
-import { useAppSelector } from 'app/config/store';
+import { useAppDispatch, useAppSelector } from 'app/config/store';
+import { getForSales } from 'app/entities/forsale/forsale.reducer';
+import { TextFormat } from 'react-jhipster';
+import { APP_DATE_FORMAT } from 'app/config/constants';
 
 export const Home = () => {
   const account = useAppSelector(state => state.authentication.account);
 
+  const dispatch = useAppDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const forSaleList = useAppSelector(state => state.forsale.entities);
+  const loading = useAppSelector(state => state.forsale.entities);
+
+  const getAllForSales = () => {
+    dispatch(getForSales({}));
+  };
+  useEffect(() => getAllForSales(), []);
+
   return (
     <Row>
-      <Col md="3" className="pad">
-        <span className="hipster rounded" />
-      </Col>
-      <Col md="9">
-        <h2>Welcome, Java Hipster!</h2>
-        <p className="lead">This is your homepage</p>
-        {account?.login ? (
-          <div>
-            <Alert color="success">You are logged in as user &quot;{account.login}&quot;.</Alert>
-          </div>
-        ) : (
-          <div>
-            <Alert color="warning">
-              If you want to
-              <span>&nbsp;</span>
-              <Link to="/login" className="alert-link">
-                sign in
-              </Link>
-              , you can try the default accounts:
-              <br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;) <br />- User (login=&quot;user&quot; and
-              password=&quot;user&quot;).
-            </Alert>
+      <Col md="12">
+        <h2>Предложение от BackEnd'a</h2>
+        <div>Обновить список {account.login}</div>
 
-            <Alert color="warning">
-              You don&apos;t have an account yet?&nbsp;
-              <Link to="/account/register" className="alert-link">
-                Register a new account
-              </Link>
-            </Alert>
-          </div>
-        )}
-        <p>If you have any question on JHipster:</p>
-
-        <ul>
-          <li>
-            <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">
-              JHipster homepage
-            </a>
-          </li>
-          <li>
-            <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">
-              JHipster on Stack Overflow
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer">
-              JHipster bug tracker
-            </a>
-          </li>
-          <li>
-            <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-              JHipster public chat room
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">
-              follow @jhipster on Twitter
-            </a>
-          </li>
-        </ul>
-
-        <p>
-          If you like JHipster, don&apos;t forget to give us a star on{' '}
-          <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
-          !
-        </p>
+        <div className="table-responsive">
+          {forSaleList && forSaleList.length > 0 ? '' : <div className="alert alert-warning">Нет предложений на данный момент</div>}
+        </div>
+        <div>
+          <Table hidden={!(forSaleList && forSaleList.length > 0)}>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Специалист</th>
+                <th>Стек</th>
+                <th>Ставка на первых 3 месяца</th>
+                <th>Целевая ставка</th>
+                <th>Предложение действует до</th>
+              </tr>
+            </thead>
+            <tbody>
+              {forSaleList.map((forSale, i) => (
+                <tr>
+                  <th scope="row">{i + 1}</th>
+                  <td>
+                    <a className="icon-link" href={forSale.urlCV}>
+                      <i className="fa-solid fa-question-circle"></i>
+                      {forSale.firstName}
+                    </a>
+                  </td>
+                  <td>
+                    <a className="icon-link" href={forSale.urlJira}>
+                      {forSale.stack}
+                    </a>
+                  </td>
+                  <td>{forSale.targetRate3Mounts}</td>
+                  <td>{forSale.targetRate}</td>
+                  <td>
+                    {forSale.activityBeforeDate ? (
+                      <TextFormat type="date" value={forSale.activityBeforeDate} format={APP_DATE_FORMAT} />
+                    ) : null}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+        <p>У вас есть вопросы?</p>
       </Col>
     </Row>
   );
